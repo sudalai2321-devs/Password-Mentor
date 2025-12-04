@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CyberGuard Pro - Advanced Password Security Suite</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Animated Particle Background -->
+    <div class="particle-container" id="particleContainer"></div>
+    
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-content">
+            <div class="loading-logo">🛡️</div>
+            <div class="loading-text">CyberGuard Pro</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Sidebar -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <span class="logo-text">CyberGuard Pro</span>
+            </div>
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+        
+        <div class="nav-menu">
+            <a href="#analyzer" class="nav-item active" data-section="analyzer">
+                <span class="nav-icon">🔍</span>
+                <span class="nav-text">Password Analyzer</span>
+            </a>
+            <a href="#generator" class="nav-item" data-section="generator">
+                <span class="nav-icon">⚡</span>
+                <span class="nav-text">Password Generator</span>
+            </a>
+            <a href="#dashboard" class="nav-item" data-section="dashboard">
+                <span class="nav-icon">📊</span>
+                <span class="nav-text">Security Dashboard</span>
+            </a>
+            <a href="#comparison" class="nav-item" data-section="comparison">
+                <span class="nav-icon">⚖️</span>
+                <span class="nav-text">Password Comparison</span>
+            </a>
+            <a href="#education" class="nav-item" data-section="education">
+                <span class="nav-icon">🎓</span>
+                <span class="nav-text">Security Education</span>
+            </a>
+            <a href="#achievements" class="nav-item" data-section="achievements">
+                <span class="nav-icon">🏆</span>
+                <span class="nav-text">Achievements</span>
+            </a>
+        </div>
+        
+        <div class="theme-controls">
+            <div class="theme-title">Themes</div>
+            <div class="theme-grid">
+                <button class="theme-btn active" data-theme="dark">🌙</button>
+                <button class="theme-btn" data-theme="light">☀️</button>
+                <button class="theme-btn" data-theme="cyber">🤖</button>
+                <button class="theme-btn" data-theme="matrix">💚</button>
+            </div>
+            <div class="controls">
+                <label class="control-item">
+                    <input type="checkbox" id="animationsToggle" checked>
+                    <span class="control-text">Animations</span>
+                </label>
+                <label class="control-item">
+                    <input type="checkbox" id="soundToggle" checked>
+                    <span class="control-text">Sound Effects</span>
+                </label>
+                <label class="control-item">
+                    <input type="checkbox" id="particlesToggle" checked>
+                    <span class="control-text">Particles</span>
+                </label>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Header with User Progress -->
+        <header class="app-header">
+            <div class="user-progress">
+                <div class="level-info">
+                    <span class="level-badge" id="userLevel">Rookie 🔓</span>
+                    <div class="xp-bar">
+                        <div class="xp-fill" id="xpFill" style="width: 15%;"></div>
+                    </div>
+                    <span class="xp-text" id="xpText">150 / 1000 XP</span>
+                </div>
+                <div class="achievement-counter" id="achievementCounter">
+                    <span class="achievement-icon">🏆</span>
+                    <span class="achievement-count">3/12</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Password Analyzer Section -->
+        <section class="content-section active" id="analyzer">
+            <div class="section-header">
+                <h1 class="section-title typewriter">Advanced Password Analysis</h1>
+                <p class="section-subtitle">Real-time security assessment with comprehensive insights</p>
+            </div>
+            
+            <div class="analyzer-grid">
+                <!-- Password Input Card -->
+                <div class="glass-card input-card">
+                    <div class="card-header">
+                        <h3>🔐 Enter Your Password</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="password-input-wrapper">
+                            <input type="password" id="passwordInput" class="password-input" 
+                                   placeholder="Type your password here..." autocomplete="off">
+                            <button type="button" id="togglePassword" class="toggle-btn">
+                                <span class="eye-icon">👁️</span>
+                            </button>
+                            <div class="input-effects"></div>
+                        </div>
+                        <div class="input-actions">
+                            <button id="generateBtn" class="action-btn primary">
+                                <span class="btn-icon">⚡</span>
+                                Generate Strong Password
+                            </button>
+                            <button id="copyBtn" class="action-btn secondary">
+                                <span class="btn-icon">📋</span>
+                                Copy
+                            </button>
+                            <button id="clearBtn" class="action-btn outline">
+                                <span class="btn-icon">🗑️</span>
+                                Clear
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strength Meter Card -->
+                <div class="glass-card strength-card">
+                    <div class="card-header">
+                        <h3>💪 Strength Analysis</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="strength-display">
+                            <div class="strength-circle" id="strengthCircle">
+                                <div class="circle-progress">
+                                    <svg class="progress-ring" width="120" height="120">
+                                        <circle class="progress-ring__circle" stroke="currentColor" 
+                                                stroke-width="8" fill="transparent" r="52" cx="60" cy="60"/>
+                                    </svg>
+                                    <div class="progress-text">
+                                        <div class="score-value" id="scoreValue">0</div>
+                                        <div class="score-label">Score</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="strength-info">
+                                <div class="strength-level" id="strengthLevel">Enter Password</div>
+                                <div class="strength-description" id="strengthDescription">Start typing to see analysis</div>
+                            </div>
+                        </div>
+                        
+                        <div class="metrics-grid">
+                            <div class="metric-item">
+                                <div class="metric-value" id="lengthValue">0</div>
+                                <div class="metric-label">Characters</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value" id="entropyValue">0</div>
+                                <div class="metric-label">Entropy (bits)</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value" id="charTypesValue">0/4</div>
+                                <div class="metric-label">Char Types</div>
+                            </div>
+                            <div class="metric-item">
+                                <div class="metric-value" id="uniqueChars">0</div>
+                                <div class="metric-label">Unique</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Character Analysis Card -->
+                <div class="glass-card analysis-card">
+                    <div class="card-header">
+                        <h3>🔤 Character Analysis</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="char-types-grid">
+                            <div class="char-type" id="lowercase">
+                                <div class="char-indicator"></div>
+                                <span class="char-label">Lowercase</span>
+                                <span class="char-count" id="lowercaseCount">0</span>
+                            </div>
+                            <div class="char-type" id="uppercase">
+                                <div class="char-indicator"></div>
+                                <span class="char-label">Uppercase</span>
+                                <span class="char-count" id="uppercaseCount">0</span>
+                            </div>
+                            <div class="char-type" id="numbers">
+                                <div class="char-indicator"></div>
+                                <span class="char-label">Numbers</span>
+                                <span class="char-count" id="numbersCount">0</span>
+                            </div>
+                            <div class="char-type" id="symbols">
+                                <div class="char-indicator"></div>
+                                <span class="char-label">Symbols</span>
+                                <span class="char-count" id="symbolsCount">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cracking Time Card -->
+                <div class="glass-card cracking-card">
+                    <div class="card-header">
+                        <h3>⏱️ Cracking Time Analysis</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="cracking-scenarios">
+                            <div class="scenario">
+                                <div class="scenario-icon">🖥️</div>
+                                <div class="scenario-info">
+                                    <div class="scenario-title">Home Computer</div>
+                                    <div class="scenario-time" id="homeTime">-</div>
+                                </div>
+                            </div>
+                            <div class="scenario">
+                                <div class="scenario-icon">⚡</div>
+                                <div class="scenario-info">
+                                    <div class="scenario-title">Professional Setup</div>
+                                    <div class="scenario-time" id="professionalTime">-</div>
+                                </div>
+                            </div>
+                            <div class="scenario">
+                                <div class="scenario-icon">☁️</div>
+                                <div class="scenario-info">
+                                    <div class="scenario-title">Cloud Cluster</div>
+                                    <div class="scenario-time" id="cloudTime">-</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vulnerability Analysis -->
+                <div class="glass-card vulnerability-card">
+                    <div class="card-header">
+                        <h3>🚨 Vulnerability Detection</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="vulnerability-list" id="vulnerabilityList">
+                            <div class="no-vulnerabilities">
+                                <span class="check-icon">✅</span>
+                                Enter a password to scan for vulnerabilities
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recommendations Card -->
+                <div class="glass-card recommendations-card">
+                    <div class="card-header">
+                        <h3>💡 Smart Recommendations</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="recommendations-list" id="recommendationsList">
+                            <div class="no-recommendations">
+                                Enter a password to receive personalized recommendations
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Password Generator Section -->
+        <section class="content-section" id="generator">
+            <div class="section-header">
+                <h1 class="section-title">⚡ Advanced Password Generator</h1>
+                <p class="section-subtitle">Create ultra-secure passwords with custom parameters</p>
+            </div>
+            
+            <div class="generator-grid">
+                <div class="glass-card generator-controls">
+                    <div class="card-header">
+                        <h3>⚙️ Generation Settings</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="control-group">
+                            <label class="control-label">Password Length: <span id="lengthDisplay">16</span></label>
+                            <input type="range" id="lengthSlider" min="8" max="64" value="16" class="slider">
+                        </div>
+                        
+                        <div class="checkbox-group">
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="includeLowercase" checked>
+                                <span class="checkmark"></span>
+                                Lowercase Letters (a-z)
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="includeUppercase" checked>
+                                <span class="checkmark"></span>
+                                Uppercase Letters (A-Z)
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="includeNumbers" checked>
+                                <span class="checkmark"></span>
+                                Numbers (0-9)
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="includeSymbols" checked>
+                                <span class="checkmark"></span>
+                                Symbols (!@#$%^&*)
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="excludeSimilar">
+                                <span class="checkmark"></span>
+                                Exclude Similar (0, O, I, l)
+                            </label>
+                            <label class="checkbox-item">
+                                <input type="checkbox" id="excludeAmbiguous">
+                                <span class="checkmark"></span>
+                                Exclude Ambiguous ({ } [ ] ( ) / \ ' " ` ~ , ; . < >)
+                            </label>
+                        </div>
+                        
+                        <div class="preset-modes">
+                            <div class="preset-title">Quick Presets:</div>
+                            <div class="preset-buttons">
+                                <button class="preset-btn" data-preset="standard">Standard</button>
+                                <button class="preset-btn" data-preset="memorable">Memorable</button>
+                                <button class="preset-btn" data-preset="ultra">Ultra Secure</button>
+                                <button class="preset-btn" data-preset="pronounceable">Pronounceable</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-card generated-passwords">
+                    <div class="card-header">
+                        <h3>🔐 Generated Passwords</h3>
+                        <button id="generateMultiple" class="action-btn primary">Generate 5 Passwords</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="password-list" id="passwordList">
+                            <div class="password-placeholder">Click generate to create secure passwords</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Security Dashboard Section -->
+        <section class="content-section" id="dashboard">
+            <div class="section-header">
+                <h1 class="section-title">📊 Security Dashboard</h1>
+                <p class="section-subtitle">Comprehensive security metrics and insights</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="glass-card stats-overview">
+                    <div class="card-header">
+                        <h3>📈 Security Stats</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-icon">🔍</div>
+                                <div class="stat-value" id="totalChecks">0</div>
+                                <div class="stat-label">Passwords Analyzed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">⚡</div>
+                                <div class="stat-value" id="totalGenerated">0</div>
+                                <div class="stat-label">Passwords Generated</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">🛡️</div>
+                                <div class="stat-value" id="strongPasswords">0</div>
+                                <div class="stat-label">Strong Passwords</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">🚨</div>
+                                <div class="stat-value" id="vulnerabilitiesFound">0</div>
+                                <div class="stat-label">Vulnerabilities Found</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-card security-radar">
+                    <div class="card-header">
+                        <h3>🎯 Security Radar</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="radar-chart" id="radarChart">
+                            <canvas width="300" height="300"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Password Comparison Section -->
+        <section class="content-section" id="comparison">
+            <div class="section-header">
+                <h1 class="section-title">⚖️ Password Comparison</h1>
+                <p class="section-subtitle">Compare multiple passwords side by side</p>
+            </div>
+            
+            <div class="comparison-container">
+                <div class="comparison-inputs">
+                    <div class="glass-card comparison-card">
+                        <div class="card-header">
+                            <h3>Password A</h3>
+                        </div>
+                        <div class="card-body">
+                            <input type="password" id="compareA" class="password-input" placeholder="Enter first password">
+                            <div class="comparison-metrics" id="metricsA"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="vs-indicator">
+                        <span class="vs-text">VS</span>
+                    </div>
+                    
+                    <div class="glass-card comparison-card">
+                        <div class="card-header">
+                            <h3>Password B</h3>
+                        </div>
+                        <div class="card-body">
+                            <input type="password" id="compareB" class="password-input" placeholder="Enter second password">
+                            <div class="comparison-metrics" id="metricsB"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-card comparison-results" id="comparisonResults">
+                    <div class="card-header">
+                        <h3>🏆 Comparison Results</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="winner-announcement" id="winnerAnnouncement">
+                            Enter passwords above to see detailed comparison
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section class="content-section" id="education">
+            <div class="section-header">
+                <h1 class="section-title">🎓 Security Education Hub</h1>
+                <p class="section-subtitle">Learn about password security and best practices</p>
+            </div>
+            
+            <div class="education-grid">
+                <div class="glass-card tips-carousel">
+                    <div class="card-header">
+                        <h3>💡 Security Tips</h3>
+                        <div class="carousel-controls">
+                            <button id="prevTip" class="carousel-btn">‹</button>
+                            <button id="nextTip" class="carousel-btn">›</button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tip-content" id="tipContent">
+                            <div class="tip-icon">📏</div>
+                            <div class="tip-title">Length Beats Complexity</div>
+                            <div class="tip-description">A 16-character passphrase is stronger than an 8-character complex password</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="glass-card attack-simulation">
+                    <div class="card-header">
+                        <h3>🎭 Attack Simulation</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="simulation-controls">
+                            <button id="startSimulation" class="action-btn primary">Start Brute Force Simulation</button>
+                        </div>
+                        <div class="simulation-display" id="simulationDisplay">
+                            <div class="simulation-placeholder">Click start to see how hackers crack passwords</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Achievements Section -->
+        <section class="content-section" id="achievements">
+            <div class="section-header">
+                <h1 class="section-title">🏆 Achievements & Progress</h1>
+                <p class="section-subtitle">Track your password security journey</p>
+            </div>
+            
+            <div class="achievements-grid">
+                <div class="glass-card level-progress">
+                    <div class="card-header">
+                        <h3>🎖️ Security Level</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="current-level">
+                            <div class="level-badge-large" id="currentLevelBadge">🔓 Rookie</div>
+                            <div class="level-description" id="levelDescription">You're just getting started on your security journey!</div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="levelProgress" style="width: 15%;"></div>
+                        </div>
+                        <div class="progress-text" id="levelProgressText">150 / 1000 XP to Guardian</div>
+                    </div>
+                </div>
+                
+                <div class="glass-card achievements-list">
+                    <div class="card-header">
+                        <h3>🏅 Achievements</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="achievement-grid" id="achievementGrid">
+                            <!-- Achievements will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Notification System -->
+    <div class="notification-container" id="notificationContainer"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>
