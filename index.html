@@ -8,6 +8,193 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+
+<body>
+    <div class="mobile-nav-container">
+        <input type="checkbox" id="active">
+        <label for="active" class="menu-btn">
+            <span class="lines"></span>
+        </label>
+        <div class="wrapper">
+            <ul>
+                <li><a href="#" class="mobile-link" data-section="analyzer">🔍 Analyzer</a></li>
+                <li><a href="#" class="mobile-link" data-section="generator">⚡ Generator</a></li>
+                <li><a href="#" class="mobile-link" data-section="dashboard">📊 Dashboard</a></li>
+                <li><a href="#" class="mobile-link" data-section="comparison">⚖️ Compare</a></li>
+                <li><a href="#" class="mobile-link" data-section="education">🎓 Education</a></li>
+                <li><a href="#" class="mobile-link" data-section="achievements">🏆 Achievements</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="particle-container" id="particleContainer"></div>
+   
+
+<style>
+/* Hide Mobile Nav on Desktop */
+.mobile-nav-container {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* --- 1. Layout Adjustments --- */
+    
+    /* Hide standard sidebar */
+    .sidebar {
+        display: none; 
+    }
+
+    /* Fix Main Content Margins */
+    .main-content {
+        margin-left: 0 !important;
+        width: 100%;
+        padding-top: 60px; /* Space for the top header */
+    }
+
+    /* Fix Header Layout */
+    .app-header {
+        padding: 1rem;
+    }
+
+    .user-progress {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    /* Show Mobile Nav Container */
+    .mobile-nav-container {
+        display: block;
+    }
+
+    /* --- 2. Bubble Menu Styles (Your Request) --- */
+    
+    /* The hidden checkbox logic */
+    #active {
+        display: none;
+    }
+
+    /* The Hamburger Button */
+    .menu-btn {
+        position: fixed;
+        z-index: 9999;
+        top: 20px;
+        right: 20px;
+        height: 50px;
+        width: 50px;
+        background: linear-gradient(-135deg, #c850c0, #4158d0);
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.3s ease;
+    }
+
+    .menu-btn:hover {
+        transform: scale(1.1);
+    }
+
+    /* The Lines inside the button */
+    .menu-btn .lines,
+    .menu-btn .lines:before,
+    .menu-btn .lines:after {
+        position: absolute;
+        height: 3px;
+        width: 25px;
+        background: #fff;
+        border-radius: 2px;
+        transition: all 0.3s ease;
+    }
+
+    .menu-btn .lines:before {
+        content: '';
+        transform: translateY(-8px);
+    }
+
+    .menu-btn .lines:after {
+        content: '';
+        transform: translateY(8px);
+    }
+
+    /* Animate Lines to X when checked */
+    #active:checked ~ .menu-btn .lines {
+        background: transparent;
+    }
+    #active:checked ~ .menu-btn .lines:before {
+        transform: rotate(45deg);
+    }
+    #active:checked ~ .menu-btn .lines:after {
+        transform: rotate(-45deg);
+    }
+
+    /* The Menu Overlay (Your specific snippet modified for functionality) */
+    .wrapper {
+        position: fixed;
+        top: 20px;       /* Aligned with button */
+        right: 20px;     /* Aligned with button */
+        height: auto;
+        min-height: 340px; 
+        width: 220px;
+        
+        /* Your Gradient */
+        background: linear-gradient(-135deg, #c850c0, #4158d0);
+        
+        /* The Clip Path Magic */
+        clip-path: circle(0px at calc(100% - 25px) 25px); /* Start hidden at button center */
+        transition: all 0.5s cubic-bezier(0.86, 0, 0.07, 1);
+        
+        z-index: 9998;
+        pointer-events: none;
+        border-radius: 20px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        
+        /* Flex content centering */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* The Open State */
+    #active:checked ~ .wrapper {
+        clip-path: circle(150% at calc(100% - 25px) 25px); /* Expand */
+        pointer-events: auto;
+    }
+
+    /* Menu List Styles */
+    .wrapper ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        padding-top: 60px; /* Push down below the X button */
+        text-align: center;
+    }
+
+    .wrapper ul li {
+        margin: 15px 0;
+    }
+
+    .wrapper ul li a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 600;
+        display: block;
+        padding: 8px 20px;
+        transition: all 0.3s ease;
+        border-radius: 30px;
+        margin: 0 20px;
+    }
+
+    .wrapper ul li a:hover,
+    .wrapper ul li a:active {
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
+    }
+}
+</style>
+    
     <!-- Animated Particle Background -->
     <div class="particle-container" id="particleContainer"></div>
     
