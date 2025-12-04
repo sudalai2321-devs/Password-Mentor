@@ -1,5 +1,25 @@
 // Advanced Password Strength Checker - Enhanced Interactive Application
 class CyberGuardPro {
+    setupMobileNavigation() {
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+        const checkbox = document.getElementById('active');
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const section = link.dataset.section;
+                
+                // 1. Switch the section
+                this.switchSection(section);
+                
+                // 2. Close the bubble menu
+                if (checkbox) checkbox.checked = false;
+                
+                // 3. Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    }
     constructor() {
         this.currentTheme = 'dark';
         this.currentSection = 'analyzer';
@@ -131,11 +151,12 @@ class CyberGuardPro {
         this.init();
     }
     
-    init() {
+init() {
         this.showLoadingScreen();
         setTimeout(() => {
             this.initializeElements();
             this.setupEventListeners();
+            this.setupMobileNavigation(); // <--- ADD THIS LINE HERE
             this.initializeParticles();
             this.updateUserProgress();
             this.updateAchievements();
